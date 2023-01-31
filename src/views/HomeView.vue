@@ -1,9 +1,13 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import Hero from '@/components/Homepages/Hero.vue'
+import Categories from '@/components/Homepages/Categories.vue'
+import Items from '@/components/Homepages/Items.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <Hero />
+    <Categories />
+    <Items />
   </main>
 </template>
