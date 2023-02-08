@@ -1,7 +1,12 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import axios from "axios";
+
+import {useUserStore} from '@/stores/user'
+
+const userStore = useUserStore()
+const router = useRouter()
 
 const form = ref({
   email: "",
@@ -18,6 +23,9 @@ async function login() {
     );
     localStorage.setItem('access_token', response.data.data.access_token)
     localStorage.setItem('token_type', response.data.data.token_type)
+
+    userStore.fetchUser();
+    router.push('/')
   } catch (error) {
     console.error(error);
   }
@@ -29,7 +37,6 @@ async function login() {
     <div class="mb-4">
       <label class="block mb-1" for="email">Email Address</label>
       <input
-        @keyup.enter="login"
         v-model="form.email"
         placeholder="Type your email"
         id="email"
@@ -41,6 +48,7 @@ async function login() {
     <div class="mb-4">
       <label class="block mb-1" for="password">Password</label>
       <input
+        @keyup.enter="login"
         v-model="form.password"
         placeholder="Type your password"
         id="password"
