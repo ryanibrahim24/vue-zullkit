@@ -4,7 +4,7 @@ import axios from "axios";
 export const useUserStore = defineStore({
   id: "user",
   state: () => ({
-    user: false,
+    user: false
   }),
   getters: {
     isLoggedIn: (state) => state.user !== false,
@@ -15,7 +15,7 @@ export const useUserStore = defineStore({
       try {
         const {data} = await axios.get('https://zullkit-backend.demo.belajarkoding.com/api/user', {
             headers: {
-                Authorization: localStorage.getItem('token_type') + '' + localStorage.getItem('access_token')
+                Authorization: `${localStorage.getItem('token_type')} ${localStorage.getItem('access_token')}`
             }
         })
         this.user = data

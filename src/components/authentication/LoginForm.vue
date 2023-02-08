@@ -10,7 +10,7 @@ const router = useRouter()
 
 const form = ref({
   email: "",
-  password: "",
+  password: ""
 });
 
 async function login() {
@@ -26,6 +26,7 @@ async function login() {
 
     userStore.fetchUser();
     router.push('/')
+    
   } catch (error) {
     console.error(error);
   }

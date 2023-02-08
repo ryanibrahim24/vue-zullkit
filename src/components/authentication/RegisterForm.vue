@@ -19,10 +19,11 @@ async function register() {
   try {
     const response = await axios.post(
       "https://zullkit-backend.demo.belajarkoding.com/api/register", {
-      nama: form.value.name,
+      name: form.value.name,
       email: form.value.email,
       password: form.value.password,
       title: FormDataEvent.value.title,
+      //FormDataEvent
     }
     );
     localStorage.setItem('access_token', response.data.data.access_token)
@@ -75,13 +76,13 @@ async function register() {
     </div>
     <div class="mt-6">
       <button
+        @click="register"
         type="button"
         class="inline-flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full hover:bg-indigo-700 md:py-2 md:text-lg md:px-10 hover:shadow"
       >
         Continue Sign Up
       </button>
       <RouterLink
-        @click="register"
         to="/login"
         type="button"
         class="inline-flex items-center justify-center w-full px-8 py-3 mt-2 text-base font-medium text-black bg-gray-200 border border-transparent rounded-full hover:bg-gray-300 md:py-2 md:text-lg md:px-10 hover:shadow"

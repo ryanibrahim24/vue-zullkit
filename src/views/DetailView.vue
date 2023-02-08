@@ -1,10 +1,15 @@
 <script setup>
+import { useUserStore } from '@/stores/user'
 import Galery from "@/components/detail/Galery.vue";
 import { RouterLink, useRoute } from "vue-router";
 import { ref, onMounted, computed } from "vue";
 import axios from 'axios'
 
 const route = useRoute();
+const userStore = useUserStore();
+const user = computed(() => userStore.getUser)
+const isLoggedIn = computed(() => userStore.isLoggedIn)
+
 
 const item = ref(false)
 
@@ -23,6 +28,7 @@ const features = computed(() => {
 
 onMounted(() => {
   window.scrollTo(0,0);
+  userStore.fetchUser()
   getProduct()
 });
 
