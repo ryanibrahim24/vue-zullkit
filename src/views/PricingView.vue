@@ -1,20 +1,20 @@
 <script setup>
 import FeatureList from "@/components/authentication/FeatureList.vue";
-import { RouterLink } from "vue-router";
 import axios from "axios";
+import { RouterLink } from "vue-router";
 
 async function checkout(price) {
   try {
     const response = await axios.post("https://zullkit-backend.demo.belajarkoding.com/api/checkout", {
         payment_total: price,
-        payment_status: 'PENDING'
+        payment_status: 'PENDING',
       },
       {
         headers: {
           Authorization: `${localStorage.getItem('token_type')} ${localStorage.getItem('access_token')}`
         }
       },
-    )
+    );
     
     window.location.href = response.data.data.payment_url;
 

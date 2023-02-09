@@ -12,7 +12,7 @@ const form = ref({
   email: "",
   password: "",
   name: "",
-  title: "Member"
+  title: "Designer"
 });
 
 async function register() {
@@ -22,7 +22,7 @@ async function register() {
       name: form.value.name,
       email: form.value.email,
       password: form.value.password,
-      title: FormDataEvent.value.title,
+      title: form.value.title,
       //FormDataEvent
     }
     );
