@@ -1,21 +1,25 @@
 <script setup>
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from "@/stores/user";
 import Galery from "@/components/detail/Galery.vue";
+
 import { RouterLink, useRoute } from "vue-router";
 import { ref, onMounted, computed } from "vue";
-import axios from 'axios'
+import axios from "axios";
 
 const route = useRoute();
 const userStore = useUserStore();
-const user = computed(() => userStore.getUser)
-const isLoggedIn = computed(() => userStore.isLoggedIn)
 
-
-const item = ref(false)
+const user = computed(() => userStore.getUser);
+const isLoggedIn = computed(() => userStore.isLoggedIn);
+const item = ref(false);
 
 async function getProduct() {
-  try{
-    const response = await axios.get('http://zullkit-backend.buildwithangga.id/api/products?id=' + route.params.id + '&show_product=1');
+  try {
+    const response = await axios.get(
+      "http://zullkit-backend.buildwithangga.id/api/products?id=" +
+        route.params.id +
+        "&show_product=1"
+    );
     item.value = response.data.data;
   } catch (error) {
     console.error(error);
@@ -23,15 +27,14 @@ async function getProduct() {
 }
 
 const features = computed(() => {
-  return item.value.features.split(",")
-})
-
-onMounted(() => {
-  window.scrollTo(0,0);
-  userStore.fetchUser()
-  getProduct()
+  return item.value.features.split(",");
 });
 
+onMounted(() => {
+  window.scrollTo(0, 0);
+  userStore.fetchUser();
+  getProduct();
+});
 </script>
 
 <template>
@@ -44,7 +47,7 @@ onMounted(() => {
           >
             {{ item.name }}
           </h1>
-          <p class="text-gray-500">{{item.subtitle}}</p>
+          <p class="text-gray-500">{{ item.subtitle }}</p>
           <Galery :defaultImage="item.thumbnails" :galleries="item.galleries" />
 
           <section class="" id="orders">
@@ -55,7 +58,6 @@ onMounted(() => {
         <aside class="w-full px-4 sm:w-1/3 md:w-1/3">
           <div class="sticky top-0 w-full pt-4 md:mt-24">
             <div class="p-6 border rounded-2xl">
-              
               <div class="mb-4" v-if="item.is_figma == 1">
                 <div class="flex mb-2">
                   <div>
@@ -71,7 +73,7 @@ onMounted(() => {
                   </div>
                 </div>
               </div>
-              
+
               <div class="mb-4" v-if="item.is_sketch == 1">
                 <div class="flex mb-2">
                   <div>
@@ -87,7 +89,7 @@ onMounted(() => {
                   </div>
                 </div>
               </div>
-              
+
               <div>
                 <h1 class="mt-5 mb-3 font-semibold text-md">Great Features</h1>
                 <ul class="mb-6 text-gray-500" v-if="item">
@@ -101,11 +103,19 @@ onMounted(() => {
                   </li>
                 </ul>
               </div>
-              <RouterLink
+
+              
+              <a v-if="user.data.subscription.length > 0"
+                :href="item.file"
+                class="inline-flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full hover:bg-indigo-700 md:py-2 md:text-md md:px-10 hover:shadow"
+                >
+                Download Now
+              </a>
+              <RouterLink v-else
                 to="/pricing"
                 class="inline-flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full hover:bg-indigo-700 md:py-2 md:text-md md:px-10 hover:shadow"
-              >
-                Download Now
+                >
+                Subscribe
               </RouterLink>
             </div>
           </div>
