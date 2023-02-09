@@ -16,7 +16,7 @@ const item = ref(false);
 async function getProduct() {
   try {
     const response = await axios.get(
-      "http://zullkit-backend.buildwithangga.id/api/products?id=" +
+      "https://zullkit-backend.demo.belajarkoding.com/api/products?id=" +
         route.params.id +
         "&show_product=1"
     );
