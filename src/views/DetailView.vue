@@ -17,8 +17,7 @@ async function getProduct() {
   try {
     const response = await axios.get(
       "https://zullkit-backend.demo.belajarkoding.com/api/products?id=" +
-        route.params.id +
-        "&show_product=1"
+        route.params.id
     );
     item.value = response.data.data;
   } catch (error) {
