@@ -10,7 +10,7 @@ const route = useRoute()
 
 async function getItemsData() {
     try {
-        const response = await axios.get('https://zullkit-backend.demo.belajarkoding.com/api/categories?id=' + route.params.id +'&show_product=1');
+        const response = await axios.get('https://zullkit-backend.demo.belajarkoding.com/api/categories?id=' + route.params.id +'&show_product=');
         items.value = response.data.data.products
         category.value = response.data.data
     } catch (error) {
