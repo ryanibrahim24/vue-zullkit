@@ -4,7 +4,7 @@ import { useUserStore } from '@/stores/user'
 
 import Logo from "@/components/layouts/Logo.vue"
 import Navigationlinks from './Navigationlinks.vue'
-import AuthButton from './Authbutton.vue'
+import AuthButton from './AuthButton.vue'
 import Userinfo from './Userinfo.vue'
 
 const userStore = useUserStore();
