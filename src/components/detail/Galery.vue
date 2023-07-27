@@ -21,7 +21,6 @@ function changeImage(image) {
         <div
           @click="changeImage(galery.url)"
           class="overflow-hidden cursor-pointer rounded-2xl"
-          :class="{ 'ring-2 ring-indigo-500': thumbnail == galery.url }"
         >
           <img :src="galery.url" class="w-full" alt="" />
         </div>
@@ -29,3 +28,4 @@ function changeImage(image) {
     </div>
   </section>
 </template>
+//:class="{ 'ring-2 ring-indigo-500': thumbnail == galery.url }"

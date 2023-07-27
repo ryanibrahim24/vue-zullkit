@@ -5,25 +5,26 @@ import { RouterLink } from "vue-router";
 
 async function checkout(price) {
   try {
-    const response = await axios.post("https://zullkit-backend.demo.belajarkoding.com/api/checkout", {
+    const response = await axios.post(
+      "https://zullkit-backend.belajarkoding.com/api/checkout",
+      {
         payment_total: price,
-        payment_status: 'PENDING',
+        payment_status: "PENDING",
       },
       {
         headers: {
-          Authorization: `${localStorage.getItem('token_type')} ${localStorage.getItem('access_token')}`
-        }
-      },
+          Authorization: `${localStorage.getItem(
+            "token_type"
+          )} ${localStorage.getItem("access_token")}`,
+        },
+      }
     );
-    
-    window.location.href = response.data.data.payment_url;
 
-  }catch(error){
-    console.error(error)
+    window.location.href = response.data.data.payment_url;
+  } catch (error) {
+    console.error(error);
   }
 }
-
-
 </script>
 
 <template>
@@ -196,7 +197,7 @@ async function checkout(price) {
           </div>
           <div class="w-full p-5 mx-auto mb-10 md:max-w-7xl">
             <div class="grid grid-cols-1 gap-4 mx-auto md:grid-cols-3 md:mx-0">
-            <FeatureList />
+              <FeatureList />
             </div>
           </div>
         </div>

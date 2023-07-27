@@ -3,39 +3,39 @@ import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import axios from "axios";
 
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from "@/stores/user";
 
-const userStore = useUserStore()
-const router = useRouter()
+const userStore = useUserStore();
+const router = useRouter();
 
 const form = ref({
   email: "",
   password: "",
   name: "",
-  title: "Designer"
+  title: "Designer",
 });
 
 async function register() {
   try {
     const response = await axios.post(
-      "https://zullkit-backend.demo.belajarkoding.com/api/register", {
-      name: form.value.name,
-      email: form.value.email,
-      password: form.value.password,
-      title: form.value.title,
-      //FormDataEvent
-    }
+      "https://zullkit-backend.belajarkoding.com/api/register",
+      {
+        name: form.value.name,
+        email: form.value.email,
+        password: form.value.password,
+        title: form.value.title,
+        //FormDataEvent
+      }
     );
-    localStorage.setItem('access_token', response.data.data.access_token)
-    localStorage.setItem('token_type', response.data.data.token_type)
+    localStorage.setItem("access_token", response.data.data.access_token);
+    localStorage.setItem("token_type", response.data.data.token_type);
 
     userStore.fetchUser();
-    router.push('/')
+    router.push("/");
   } catch (error) {
     console.error(error);
   }
 }
-
 </script>
 
 <template>
